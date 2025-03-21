@@ -46,12 +46,12 @@ class Corrida{
     int cnt1=0;
     string escolha;
     int[] voltas=new int[20]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-    int qtd1=3;
+    int qtd1=3, qtd2=3, qtd3=3;
     bool r;
     
 
     Console.Clear();
-    Console.WriteLine("\n\tSeja Bem-Vindo(a) ao Rise of the Dice Race\n");
+    Console.WriteLine("\n\tSeja Bem-Vindo(a)\n");
     Console.WriteLine("\nEsse é um jogo de corrida com dados. Vamos começar configurando o seu carro.\n");
     Console.WriteLine("Clique Enter para começarmos!\n");
     tecla=Console.ReadLine();
@@ -145,19 +145,35 @@ class Corrida{
     Console.Clear();
     Console.WriteLine("Clique Enter para o Bot1 jogar!\n");
     tecla=Console.ReadLine();
+    if(qtd2>0 && new Random().Next(1,4)==1){
+        qtd2--;
+        Console.WriteLine("Bot1 usou o turbo!");
+        dado = new Random().Next(-20, 30);
+        Console.WriteLine("Bot1 tirou: {0}", dado);
+        cnt2 += dado;
+    }else{
     Random random1=new Random();
         dado=random1.Next(1,10);
         Console.WriteLine("Bot1 tirou: {0}\n", dado);
         cnt2+=dado;
+    }
         Thread.Sleep(2000);
     Console.Clear();
 
-    Console.WriteLine("Clique Enter para o Bot2 jogar!\n");
+     Console.WriteLine("Clique Enter para o Bot2 jogar!\n");
     tecla=Console.ReadLine();
-    Random random2=new Random();
-        dado=random2.Next(1,10);
+    if(qtd2>0 && new Random().Next(1,4)==1){
+        qtd3--;
+        Console.WriteLine("Bot2 usou o turbo!");
+        dado = new Random().Next(-20, 30);
+        Console.WriteLine("Bot2 tirou: {0}", dado);
+        cnt3 += dado;
+    }else{
+    Random random1=new Random();
+        dado=random1.Next(1,10);
         Console.WriteLine("Bot2 tirou: {0}\n", dado);
         cnt3+=dado;
+    }
         
     Thread.Sleep(2000);
     Console.Clear();
@@ -176,12 +192,15 @@ class Corrida{
     if(cnt1 >= 100){
          Console.WriteLine("VENCEDOR: {0}\n", c1);
           Console.WriteLine("\nVocê venceu parabéns!!!\n");
+          goto fim;
     }else if(cnt2 >= 100){
          Console.WriteLine("VENCEDOR: {0}\n", c2);
            Console.WriteLine("\nVocê perdeu!!!\n");
+           goto fim;
     }else if(cnt3 >= 100){
          Console.WriteLine("VENCEDOR: {0}\n", c3);
            Console.WriteLine("\nVocê perdeu!!!\n");
+           goto fim;
     }else{
 
     }     
@@ -210,22 +229,7 @@ class Corrida{
  }
 
 
-
 }
 
 
 
-
-
-//preciso que os bots ativem o turbo 3 vezes.
-
- /*for(int b=0;b<4;b++){
-         Console.WriteLine("O bot2  ativou o turbo!");
-          c3.setTurbo();
-            Console.WriteLine("Turbo: {0}", c3.getTurbo());
-            Random random=new Random();
-            dado=random.Next(-10,20);
-            Console.WriteLine("Bot2 tirou: {0}", dado);
-            cnt3+=dado;
-     }
-*/
